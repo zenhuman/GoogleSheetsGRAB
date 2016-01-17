@@ -1,0 +1,17 @@
+// **********************************************************************
+//                            FUNCTION: GRAB
+// **********************************************************************
+
+// Grabs whatever text exists between two other units of text using regex.
+// Inspect element on any webpage. Use this as a custom function or as part of a script to grab the text you want.
+// Grab(url, foretext, aftertext)
+
+function grab(url, foretext, aftertext) 
+{
+    var page = UrlFetchApp.fetch(url);
+    var html = page.getContentText();
+    var regex = foretext+"([^<>]+)"+aftertext
+    var output = html.match(regex);
+          if(output == null) {var output = null} else {output = output[1]};  
+  return output;
+}
